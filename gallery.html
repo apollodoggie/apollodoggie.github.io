@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品ギャラリー | 撮影チーム</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">撮影チーム</div>
+    <nav class="nav-links">
+      <a href="index.html">ホーム</a>
+      <a href="gallery.html" class="active">作品ギャラリー</a>
+    </nav>
+  </div>
+</header>
+
+<section class="gallery-page">
+  <h1>作品ギャラリー</h1>
+  <p class="lead">これまでの撮影実績の一部をご紹介します。</p>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="portrait">ポートレート</button>
+    <button class="filter-btn" data-filter="location">ロケーション</button>
+    <button class="filter-btn" data-filter="event">イベント</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- placeholder photo items, replace with real <img> tags later -->
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 撮影チーム
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <div class="lightbox-content" id="lightboxContent">No.</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
