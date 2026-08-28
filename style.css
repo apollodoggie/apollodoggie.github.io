@@ -533,13 +533,12 @@ section {
   justify-content: center;
   gap: 8px;
   margin-top: 16px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
 }
 
-.calendar-note {
+.calendar-cta p.calendar-note {
   margin: 8px 0 0;
-  font-size: 13px;
   color: var(--muted);
   text-align: center;
 }
