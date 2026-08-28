@@ -1,6 +1,6 @@
 const CALENDAR_ID = "apollo.doggie.tsukuba@gmail.com";
 const API_KEY = "AIzaSyD3v3AGZxwZU7LJBnIb9r-U3BScNDn5NU4";
-const MONTHS_AHEAD = 3; // 今月 + 3ヶ月先まで表示
+const MONTHS_AHEAD = 2; // 今月 + 2ヶ月先(常に3ヶ月分)まで表示
 
 const listEl = document.getElementById("availabilityList");
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
