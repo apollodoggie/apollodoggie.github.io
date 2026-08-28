@@ -513,12 +513,20 @@ section {
   font-size: 11px;
   letter-spacing: 0.02em;
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+a.availability-badge:hover {
+  background: #93714f;
 }
 
 .availability-badge.booked {
   background: #ececec;
   color: #aaaaaa;
   opacity: 0.7;
+  cursor: default;
 }
 
 @media (max-width: 768px) {
