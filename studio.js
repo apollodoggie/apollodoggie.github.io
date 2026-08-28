@@ -1,7 +1,7 @@
 const photos = [
-  "images/studio/studio-01.jpg",
-  "images/studio/studio-02.jpg",
-  "images/studio/studio-03.jpg",
+  "/images/studio/studio-01.jpg",
+  "/images/studio/studio-02.jpg",
+  "/images/studio/studio-03.jpg",
 ];
 
 const grid = document.getElementById("studioGrid");
