@@ -1,13 +1,9 @@
 const CALENDAR_ID = "apollo.doggie.tsukuba@gmail.com";
 const API_KEY = "AIzaSyD3v3AGZxwZU7LJBnIb9r-U3BScNDn5NU4";
-const DAYS_AHEAD = 90;
+const MONTHS_AHEAD = 3; // 今月 + 3ヶ月先まで表示
 
 const listEl = document.getElementById("availabilityList");
-
-function formatDateLabel(date) {
-  const weekday = ["日", "月", "火", "水", "木", "金", "土"][date.getDay()];
-  return `${date.getMonth() + 1}/${date.getDate()}(${weekday})`;
-}
+const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
 
 function formatTimeLabel(dateTimeStr) {
   const d = new Date(dateTimeStr);
@@ -18,76 +14,124 @@ function isBooked(title) {
   return (title || "").includes("予約済み");
 }
 
+function dateKey(date) {
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+}
+
 async function loadAvailability() {
   if (!API_KEY || API_KEY === "YOUR_API_KEY_HERE") {
     listEl.innerHTML = '<p class="availability-loading">空き状況の準備中です。しばらくお待ちください。</p>';
     return;
   }
 
-  const timeMin = new Date();
-  const timeMax = new Date();
-  timeMax.setDate(timeMax.getDate() + DAYS_AHEAD);
+  const today = new Date();
+  const firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const monthsToShow = [];
+  for (let i = 0; i <= MONTHS_AHEAD; i++) {
+    monthsToShow.push(new Date(firstMonth.getFullYear(), firstMonth.getMonth() + i, 1));
+  }
+
+  const timeMin = today;
+  const timeMax = new Date(monthsToShow[monthsToShow.length - 1].getFullYear(), monthsToShow[monthsToShow.length - 1].getMonth() + 1, 1);
 
   const url =
     `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events` +
     `?key=${API_KEY}&singleEvents=true&orderBy=startTime` +
-    `&timeMin=${timeMin.toISOString()}&timeMax=${timeMax.toISOString()}`;
+    `&timeMin=${timeMin.toISOString()}&timeMax=${timeMax.toISOString()}&maxResults=2500`;
 
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error("failed to fetch calendar");
     const data = await res.json();
-    renderAvailability(data.items || []);
+    renderCalendar(monthsToShow, data.items || []);
   } catch (err) {
     listEl.innerHTML = '<p class="availability-loading">空き状況を取得できませんでした。公式LINEよりお問い合わせください。</p>';
   }
 }
 
-function renderAvailability(events) {
+function renderCalendar(monthsToShow, events) {
   const byDate = new Map();
 
   events.forEach((ev) => {
-    const start = ev.start && (ev.start.dateTime || ev.start.date);
-    if (!start || !ev.start.dateTime) return; // 終日予定(定休日など)は一覧に含めない
-
+    if (!ev.start || !ev.start.dateTime) return; // 終日予定(定休日など)は一覧に含めない
     const date = new Date(ev.start.dateTime);
-    const key = date.toDateString();
-    if (!byDate.has(key)) byDate.set(key, { date, slots: [] });
-    byDate.get(key).slots.push({
+    const key = dateKey(date);
+    if (!byDate.has(key)) byDate.set(key, []);
+    byDate.get(key).push({
       time: formatTimeLabel(ev.start.dateTime),
       booked: isBooked(ev.summary),
     });
   });
 
-  if (byDate.size === 0) {
-    listEl.innerHTML = '<p class="availability-loading">現在ご案内できる空き枠がありません。公式LINEよりお問い合わせください。</p>';
-    return;
+  listEl.innerHTML = "";
+
+  monthsToShow.forEach((monthStart) => {
+    listEl.appendChild(buildMonthCard(monthStart, byDate));
+  });
+}
+
+function buildMonthCard(monthStart, byDate) {
+  const year = monthStart.getFullYear();
+  const month = monthStart.getMonth();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstWeekday = monthStart.getDay();
+
+  const card = document.createElement("div");
+  card.className = "avail-month";
+
+  const title = document.createElement("h3");
+  title.className = "avail-month-title";
+  title.textContent = `${year}年${month + 1}月`;
+  card.appendChild(title);
+
+  const wrap = document.createElement("div");
+  wrap.className = "avail-grid-wrap";
+
+  const grid = document.createElement("div");
+  grid.className = "avail-grid";
+
+  WEEKDAYS.forEach((w) => {
+    const cell = document.createElement("div");
+    cell.className = "avail-weekday";
+    cell.textContent = w;
+    grid.appendChild(cell);
+  });
+
+  for (let i = 0; i < firstWeekday; i++) {
+    const cell = document.createElement("div");
+    cell.className = "avail-day empty";
+    grid.appendChild(cell);
   }
 
-  listEl.innerHTML = "";
-  Array.from(byDate.values())
-    .sort((a, b) => a.date - b.date)
-    .forEach((day) => {
-      const row = document.createElement("div");
-      row.className = "availability-row";
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    const cell = document.createElement("div");
+    cell.className = "avail-day";
 
-      const label = document.createElement("span");
-      label.className = "availability-date";
-      label.textContent = formatDateLabel(day.date);
-      row.appendChild(label);
+    const num = document.createElement("span");
+    num.className = "avail-daynum";
+    num.textContent = d;
+    cell.appendChild(num);
 
-      const slots = document.createElement("span");
-      slots.className = "availability-slots";
-      day.slots.forEach((slot) => {
+    const slots = byDate.get(dateKey(date));
+    if (slots && slots.length) {
+      const slotsWrap = document.createElement("div");
+      slotsWrap.className = "avail-day-slots";
+      slots.forEach((slot) => {
         const badge = document.createElement("span");
         badge.className = "availability-badge" + (slot.booked ? " booked" : "");
-        badge.textContent = slot.time;
-        slots.appendChild(badge);
+        badge.textContent = `${slot.time} ${slot.booked ? "×" : "◯"}`;
+        slotsWrap.appendChild(badge);
       });
-      row.appendChild(slots);
+      cell.appendChild(slotsWrap);
+    }
 
-      listEl.appendChild(row);
-    });
+    grid.appendChild(cell);
+  }
+
+  wrap.appendChild(grid);
+  card.appendChild(wrap);
+  return card;
 }
 
 loadAvailability();
