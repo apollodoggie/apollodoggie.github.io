@@ -1,26 +1,10 @@
 const photos = [
-  "images/gallery/doggie-01.jpg",
-  "images/gallery/doggie-02.jpg",
-  "images/gallery/doggie-03.jpg",
-  "images/gallery/doggie-04.jpg",
-  "images/gallery/doggie-05.jpg",
-  "images/gallery/doggie-06.jpg",
-  "images/gallery/doggie-07.jpg",
-  "images/gallery/doggie-08.jpg",
-  "images/gallery/doggie-09.jpg",
-  "images/gallery/doggie-10.jpg",
-  "images/gallery/doggie-11.jpg",
-  "images/gallery/doggie-12.jpg",
-  "images/gallery/doggie-13.jpg",
-  "images/gallery/doggie-14.jpg",
-  "images/gallery/doggie-15.jpg",
-  "images/gallery/doggie-16.jpg",
-  "images/gallery/doggie-17.jpg",
-  "images/gallery/doggie-18.jpg",
-  "images/gallery/doggie-19.jpg",
+  "images/studio/studio-01.jpg",
+  "images/studio/studio-02.jpg",
+  "images/studio/studio-03.jpg",
 ];
 
-const grid = document.getElementById("galleryGrid");
+const grid = document.getElementById("studioGrid");
 const lightbox = document.getElementById("lightbox");
 const lightboxContent = document.getElementById("lightboxContent");
 const lightboxClose = document.getElementById("lightboxClose");

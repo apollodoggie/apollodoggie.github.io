@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>予約について | apollo doggie studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">apollo doggie studio</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="price.html">Price</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="studio.html">Studio</a>
+      <a href="reservation.html" class="active">予約について</a>
+    </nav>
+  </div>
+</header>
+
+<section>
+  <div class="section-title">
+    <h2>ご予約の流れ</h2>
+  </div>
+
+  <ol class="flow-list">
+    <li>公式LINEを追加し、ご予約ボタンをタップしてください</li>
+    <li>ご予約フォームにて必要事項をご入力ください</li>
+    <li>
+      内容を確認後、公式LINEより「ご予約確定メッセージ」をお送りします
+      <span class="flow-note">※フォーム送信後、24時間以内にご返信いたします</span>
+    </li>
+    <li>当日はスタジオにお越しください</li>
+    <li>撮影日より2週間以内にデータ納品いたします</li>
+  </ol>
+
+  <div class="line-cta">
+    <p>公式LINEのご追加はこちら↓</p>
+    <a href="#" class="line-box">公式LINEを追加する</a>
+  </div>
+
+  <div class="calendar-cta">
+    <p>空き状況のご確認はこちら↓</p>
+    <div class="availability-list" id="availabilityList">
+      <p class="availability-loading">空き状況を読み込んでいます…</p>
+    </div>
+    <div class="calendar-legend">
+      <span class="legend-dot"></span>
+      色のついている時間帯がご予約いただけます
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 apollo doggie studio
+</footer>
+
+<script src="reservation.js"></script>
+</body>
+</html>
