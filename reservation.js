@@ -3,8 +3,8 @@ const API_KEY = "AIzaSyD3v3AGZxwZU7LJBnIb9r-U3BScNDn5NU4";
 const MONTHS_AHEAD = 2; // 今月 + 2ヶ月先(常に3ヶ月分)まで表示
 
 const FORM_BASE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeoOmXaGI_yRP--rkMlFutUp7rRpmCwBZM63XPt3KnzHOlEKw/viewform";
-const FORM_ENTRY_DATE = "entry.621922491";
-const FORM_ENTRY_TIME = "entry.786198375";
+const FORM_ENTRY_DATE = "entry.817555791";
+const FORM_ENTRY_TIME = "entry.680312596";
 
 const listEl = document.getElementById("availabilityList");
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
