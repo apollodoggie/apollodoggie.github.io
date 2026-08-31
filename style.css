@@ -680,7 +680,7 @@ a.availability-badge:hover {
 
 .placeholder-photo {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 2 / 3;
   border-radius: 8px;
   background: linear-gradient(135deg, #f1f1f1, #e3e3e3);
   display: flex;
@@ -691,6 +691,13 @@ a.availability-badge:hover {
   letter-spacing: 0.05em;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.placeholder-photo:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 .placeholder-photo svg {
@@ -710,6 +717,7 @@ a.availability-badge:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .gallery-cta {
@@ -763,8 +771,8 @@ footer {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .lightbox {
@@ -782,9 +790,10 @@ footer {
 }
 
 .lightbox-content {
-  background: #f5f5f5;
-  width: min(80vw, 700px);
-  aspect-ratio: 4 / 3;
+  width: auto;
+  height: auto;
+  max-width: 85vw;
+  max-height: 85vh;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -794,9 +803,13 @@ footer {
 }
 
 .lightbox-content img {
-  width: 100%;
-  height: 100%;
+  display: block;
+  max-width: 85vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  border-radius: 8px;
 }
 
 .lightbox-close {
