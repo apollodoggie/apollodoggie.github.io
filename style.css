@@ -421,9 +421,25 @@ section {
 }
 
 .booking-box {
+  display: block;
   max-width: 320px;
-  margin: 28px auto 0;
+  margin: 32px auto 0;
+  padding: 18px 32px;
+  background: var(--warm);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-align: center;
+  box-shadow: 0 6px 16px rgba(169, 131, 92, 0.35);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.booking-box:hover {
+  background: #93714f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(169, 131, 92, 0.45);
 }
 
 .line-box:hover {
