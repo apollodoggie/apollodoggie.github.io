@@ -2,10 +2,6 @@ const CALENDAR_ID = "apollo.doggie.tsukuba@gmail.com";
 const API_KEY = "AIzaSyD3v3AGZxwZU7LJBnIb9r-U3BScNDn5NU4";
 const MONTHS_AHEAD = 2; // 今月 + 2ヶ月先(常に3ヶ月分)まで表示
 
-const FORM_BASE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeoOmXaGI_yRP--rkMlFutUp7rRpmCwBZM63XPt3KnzHOlEKw/viewform";
-const FORM_ENTRY_DATE = "entry.817555791";
-const FORM_ENTRY_TIME = "entry.680312596";
-
 const listEl = document.getElementById("availabilityList");
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -20,22 +16,6 @@ function isBooked(title) {
 
 function dateKey(date) {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-}
-
-function formatDateForForm(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
-}
-
-function buildFormUrl(date, time) {
-  const params = new URLSearchParams({
-    usp: "pp_url",
-    [FORM_ENTRY_DATE]: formatDateForForm(date),
-    [FORM_ENTRY_TIME]: time,
-  });
-  return `${FORM_BASE_URL}?${params.toString()}`;
 }
 
 async function loadAvailability() {
@@ -139,21 +119,10 @@ function buildMonthCard(monthStart, byDate) {
       const slotsWrap = document.createElement("div");
       slotsWrap.className = "avail-day-slots";
       slots.forEach((slot) => {
-        const label = `${slot.time} ${slot.booked ? "×" : "◯"}`;
-        if (slot.booked) {
-          const badge = document.createElement("span");
-          badge.className = "availability-badge booked";
-          badge.textContent = label;
-          slotsWrap.appendChild(badge);
-        } else {
-          const badge = document.createElement("a");
-          badge.className = "availability-badge";
-          badge.href = buildFormUrl(slot.date, slot.time);
-          badge.target = "_blank";
-          badge.rel = "noopener noreferrer";
-          badge.textContent = label;
-          slotsWrap.appendChild(badge);
-        }
+        const badge = document.createElement("span");
+        badge.className = "availability-badge" + (slot.booked ? " booked" : "");
+        badge.textContent = `${slot.time} ${slot.booked ? "×" : "◯"}`;
+        slotsWrap.appendChild(badge);
       });
       cell.appendChild(slotsWrap);
     }

@@ -420,6 +420,12 @@ section {
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
+.booking-box {
+  max-width: 320px;
+  margin: 28px auto 0;
+  text-align: center;
+}
+
 .line-box:hover {
   border-color: var(--warm);
   background: #fbf8f4;
