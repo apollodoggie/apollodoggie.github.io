@@ -681,6 +681,59 @@ a.availability-badge:hover {
   .avail-month-title {
     text-align: center;
   }
+
+  .avail-grid-wrap {
+    overflow-x: visible;
+  }
+
+  .avail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .avail-weekday {
+    display: none;
+  }
+
+  .avail-day.empty {
+    display: none;
+  }
+
+  .avail-day:not(:has(.avail-day-slots)) {
+    display: none;
+  }
+
+  .avail-day {
+    min-height: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+  }
+
+  .avail-daynum {
+    flex-shrink: 0;
+    width: 52px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .avail-daynum::after {
+    content: "(" attr(data-weekday) ")";
+    margin-left: 2px;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .avail-day-slots {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
 }
 
 .calendar-legend {
@@ -925,11 +978,6 @@ footer {
 
   .price-value {
     font-size: 19px;
-  }
-
-  .avail-grid {
-    grid-template-columns: repeat(7, minmax(72px, 1fr));
-    min-width: 520px;
   }
 }
 

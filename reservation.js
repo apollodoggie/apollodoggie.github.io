@@ -112,6 +112,7 @@ function buildMonthCard(monthStart, byDate) {
     const num = document.createElement("span");
     num.className = "avail-daynum";
     num.textContent = d;
+    num.dataset.weekday = WEEKDAYS[date.getDay()];
     cell.appendChild(num);
 
     const slots = byDate.get(dateKey(date));
