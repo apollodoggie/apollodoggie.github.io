@@ -193,8 +193,8 @@ section {
   margin: 0 auto;
   padding: 90px 24px;
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.05fr);
-  gap: 72px;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(280px, 1.1fr);
+  gap: 56px;
   align-items: center;
 }
 
