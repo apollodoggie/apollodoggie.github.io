@@ -1,9 +1,9 @@
 :root {
-  --bg: #ffffff;
+  --bg: #fff4dd;
   --text: #222222;
   --muted: #777777;
   --accent: #2b2b2b;
-  --warm: #a9835c;
+  --warm: #9e1012;
   --border: #ececec;
   --max-width: 1080px;
 }
@@ -28,9 +28,7 @@ a {
 header {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--border);
+  background: #9e1012;
   z-index: 100;
 }
 
@@ -48,6 +46,7 @@ header {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.05em;
+  color: #fff;
 }
 
 .nav-links {
@@ -57,13 +56,13 @@ header {
 }
 
 .nav-links a {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.8);
   transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--text);
+  color: #fff;
 }
 
 .nav-toggle {
@@ -85,7 +84,7 @@ header {
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--text);
+  background: #fff;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -534,14 +533,14 @@ section {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-align: center;
-  box-shadow: 0 6px 16px rgba(169, 131, 92, 0.35);
+  box-shadow: 0 6px 16px rgba(158, 16, 18, 0.35);
   transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .booking-box:hover {
-  background: #93714f;
+  background: #7c0d0f;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(169, 131, 92, 0.45);
+  box-shadow: 0 8px 20px rgba(158, 16, 18, 0.45);
 }
 
 .line-cta {
@@ -683,7 +682,7 @@ section {
 }
 
 a.availability-badge:hover {
-  background: #93714f;
+  background: #7c0d0f;
 }
 
 .availability-badge.booked {
@@ -733,7 +732,7 @@ a.availability-badge:hover {
   position: relative;
   aspect-ratio: 2 / 3;
   border-radius: 8px;
-  background: linear-gradient(135deg, #f1f1f1, #e3e3e3);
+  background: linear-gradient(135deg, #f4f1ec, #e7e2d6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -895,9 +894,8 @@ footer {
     align-items: stretch;
     gap: 0;
     margin: 0;
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+    background: #9e1012;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.25s ease;
@@ -910,7 +908,7 @@ footer {
   .nav-links a {
     padding: 16px 24px;
     font-size: 15px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   br.pc-br {
