@@ -199,7 +199,7 @@ section {
 }
 
 .intro-photo {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
   border-radius: 4px;
   background: linear-gradient(135deg, #f4f1ec, #e7e2d6);
   display: flex;
@@ -208,6 +208,14 @@ section {
   color: #b3ac9c;
   font-size: 13px;
   letter-spacing: 0.05em;
+  overflow: hidden;
+}
+
+.intro-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .intro-heading {
