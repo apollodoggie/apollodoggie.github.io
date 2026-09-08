@@ -8,7 +8,7 @@ const photos = [
   "/images/gallery/doggie-21.jpg",
   "/images/gallery/doggie-07.jpg",
   "/images/gallery/doggie-20.jpg",
-  "/images/gallery/doggie-14.jpg",
+  "/images/gallery/doggie-24.jpg",
   "/images/gallery/doggie-17.jpg",
   "/images/gallery/doggie-09.jpg",
   "/images/gallery/doggie-01.jpg",
